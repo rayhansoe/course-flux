@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom"
+
 const CoursesList = ({ courses }) => {
 	return (
 		<table className='table'>
@@ -12,7 +14,9 @@ const CoursesList = ({ courses }) => {
 				{courses.map(course => {
 					return (
 						<tr key={course.title}>
-							<td>{course.title}</td>
+							<td>
+								<Link to={"/course/" + course.title}>{course.title}</Link>
+							</td>
 							<td>{course.authorId}</td>
 							<td>{course.category}</td>
 						</tr>

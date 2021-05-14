@@ -1,27 +1,22 @@
-const Header = () => {
-	return (
-		<>
-			{/* <nav >
-			<a href='/'>Home</a> | <a href='/about'>About</a> | <a href='/courses'>Courses</a>
-		</nav> */}
+import { NavLink } from "react-router-dom"
 
-			<nav aria-label={"breadcrumb"} className='mt-3'>
-				<ol className='breadcrumb'>
-					<li className='breadcrumb-item'>
-						{" "}
-						<a href='/'>Home</a>
-					</li>
-					<li className='breadcrumb-item'>
-						{" "}
-						<a href='/about'>About</a>
-					</li>
-					<li className='breadcrumb-item'>
-						{" "}
-						<a href='/courses'>Courses</a>{" "}
-					</li>
-				</ol>
-			</nav>
-		</>
+const Header = () => {
+	const activeStyle = { color: "gray" }
+
+	return (
+		<nav aria-label={"breadcrumb"} className='mt-3'>
+			<ol className='breadcrumb'>
+				<NavLink className='breadcrumb-item' exact to='/' activeStyle={activeStyle}>
+					Home
+				</NavLink>
+				<NavLink className='breadcrumb-item' to='/about' activeStyle={activeStyle}>
+					About
+				</NavLink>
+				<NavLink className='breadcrumb-item' to='/courses' activeStyle={activeStyle}>
+					Courses
+				</NavLink>
+			</ol>
+		</nav>
 	)
 }
 
