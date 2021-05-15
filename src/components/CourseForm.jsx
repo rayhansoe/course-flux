@@ -1,21 +1,10 @@
 import React from "react"
+import TextInput from "./common/TextInput"
 
 const CourseForm = ({ course, onChange, onSubmit }) => {
 	return (
 		<form className='course-form' onSubmit={onSubmit}>
-			<div className='form-group mt-4'>
-				<label htmlFor='title'>Title</label>
-				<div className='field'>
-					<input
-						id='title'
-						type='text'
-						name='title'
-						className='form-control mt-2'
-						onChange={onChange}
-						value={course.title}
-					/>
-				</div>
-			</div>
+			<TextInput id='title' label='Title' onChange={onChange} name='title' value={course.title} />
 
 			<div className='form-group mt-4'>
 				<label htmlFor='author'>Author</label>
@@ -33,19 +22,13 @@ const CourseForm = ({ course, onChange, onSubmit }) => {
 				</div>
 			</div>
 
-			<div className='form-group mt-4'>
-				<label htmlFor='category'>Category</label>
-				<div className='field'>
-					<input
-						type='text'
-						id='category'
-						name='category'
-						className='form-control mt-2'
-						onChange={onChange}
-						value={course.category}
-					/>
-				</div>
-			</div>
+			<TextInput
+				id='category'
+				label='Category'
+				onChange={onChange}
+				name='category'
+				value={course.category}
+			/>
 
 			<input type='submit' value='Save' className='btn btn-primary mt-3' />
 		</form>

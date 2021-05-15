@@ -18,8 +18,9 @@ const ManageCoursePage = props => {
 
 	const handleSubmit = event => {
 		event.preventDefault()
-		saveCourse(course)
-		console.log("fungsi dieksekusi")
+		saveCourse(course).then(() => {
+			props.history.push("/courses")
+		})
 	}
 
 	return (
