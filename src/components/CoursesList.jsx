@@ -15,7 +15,7 @@ const CoursesList = ({ courses }) => {
 					return (
 						<tr key={course.title}>
 							<td>
-								<Link to={"/course/" + course.title}>{course.title}</Link>
+								<Link to={"/course/" + course.slug}>{course.title}</Link>
 							</td>
 							<td>{course.authorId}</td>
 							<td>{course.category}</td>
