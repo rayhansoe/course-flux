@@ -1,11 +1,11 @@
 import CourseForm from "./CourseForm"
 import React, { useState, useEffect } from "react"
-
-import { saveCourse, getCourseBySlug } from "../api/courseApi"
-import { toast } from "react-toastify"
+import courseStore from "../stores/courseStore"
+import { saveCourse, loadCourses } from "../actions/courseActions"
 
 const ManageCoursePage = props => {
 	const [errors, setErrors] = useState({})
+	const [courses, setCourses] = useState(courseStore.getCourses())
 	const [course, setCourse] = useState({
 		id: null,
 		slug: "",
@@ -14,12 +14,20 @@ const ManageCoursePage = props => {
 		category: "",
 	})
 
+	const onChange = () => {
+		setCourses(courseStore.getCourses())
+	}
+
 	useEffect(() => {
+		courseStore.addChangeLister(onChange)
 		const slug = props.match.params.slug
-		if (slug) {
-			getCourseBySlug(slug).then(_course => setCourse(_course))
+		if (courses.length === 0) {
+			loadCourses()
+		} else if (slug) {
+			setCourse(courseStore.getCoursesBySlug(slug))
 		}
-	}, [props.match.params.slug])
+		return () => courseStore.removeChangeListener(onChange)
+	}, [courses, props.match.params.slug])
 
 	const formIsValid = () => {
 		const _error = {}
@@ -43,7 +51,6 @@ const ManageCoursePage = props => {
 		if (!formIsValid()) return
 		saveCourse(course).then(() => {
 			props.history.push("/courses")
-			toast.info("🦄 Wow so easy!")
 		})
 	}
 
