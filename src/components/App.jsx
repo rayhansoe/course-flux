@@ -1,5 +1,6 @@
 import Header from "./common/Header"
 import CoursesPage from "./CoursesPage"
+import AuthorsPage from "./AuthorsPage"
 import ManageCoursePage from "./ManageCoursePage"
 import About from "./About"
 import HomePage from "./HomePage"
@@ -27,6 +28,7 @@ const App = () => {
 				<Route path='/' exact component={HomePage} />
 				<Route path='/about' component={About} />
 				<Route path='/courses' component={CoursesPage} />
+				<Route path='/authors' component={AuthorsPage} />
 				<Route path='/course/:slug' component={ManageCoursePage} />
 				<Route path='/course' component={ManageCoursePage} />
 				<Redirect from='/home' to='/' />

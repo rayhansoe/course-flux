@@ -1,8 +1,32 @@
 import React from "react"
 import TextInput from "./common/TextInput"
 import PropTypes from "prop-types"
+import DropDown from "./common/DropDown"
+import authorStore from "../stores/authorStore"
+import { loadAuthors } from "../actions/author/authorActions"
+import { useState, useEffect } from "react"
 
 const CourseForm = ({ course, onChange, onSubmit, errors }) => {
+	const [authors, setAuthors] = useState(authorStore.getAuthors())
+
+	const onChangeAuthors = () => {
+		setAuthors(authorStore.getAuthors())
+	}
+
+	useEffect(() => {
+		function sub() {
+			authorStore.addChangeListener(onChangeAuthors)
+		}
+
+		sub()
+
+		if (authorStore.getAuthors().length === 0) loadAuthors()
+
+		return () => {
+			authorStore.removeChangeListener(onChangeAuthors)
+		}
+	}, [authors.length])
+
 	return (
 		<form className='course-form' onSubmit={onSubmit}>
 			<TextInput
@@ -14,22 +38,14 @@ const CourseForm = ({ course, onChange, onSubmit, errors }) => {
 				error={errors.title}
 			/>
 
-			<div className='form-group mt-4'>
-				<label htmlFor='author'>Author</label>
-				<div className='field'>
-					<select
-						id='author'
-						name='authorId'
-						onChange={onChange}
-						value={course.authorId || ""}
-						className='form-control mt-2'>
-						<option value='' />
-						<option value='1'>Cory House</option>
-						<option value='2'>Scott Allen</option>
-					</select>
-				</div>
-				{errors.authorId && <div className='alert alert-danger'>{errors.authorId}</div>}
-			</div>
+			<DropDown
+				id='author'
+				name='authorId'
+				onChange={onChange}
+				course={course}
+				authors={authors}
+				errors={errors}
+			/>
 
 			<TextInput
 				id='category'

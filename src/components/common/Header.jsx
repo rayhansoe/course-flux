@@ -15,6 +15,9 @@ const Header = () => {
 				<NavLink className='breadcrumb-item' to='/courses' activeStyle={activeStyle}>
 					Courses
 				</NavLink>
+				<NavLink className='breadcrumb-item' to='/authors' activeStyle={activeStyle}>
+					authors
+				</NavLink>
 			</ol>
 		</nav>
 	)

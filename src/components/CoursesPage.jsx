@@ -1,27 +1,53 @@
 import courseStore from "../stores/courseStore"
-import { loadCourses, deleteCourse } from "../actions/courseActions"
+// import authorStore from "../stores/authorStore"
+import { loadCourses, deleteCourse } from "../actions/course/courseActions"
+// import { getAuthors } from "../api/authorApi"
 import { useState, useEffect } from "react"
 import CoursesList from "./CoursesList"
 import { Link } from "react-router-dom"
-import { getAuthors } from "../api/authorApi"
 
 const CoursesPage = () => {
 	const [courses, setCourses] = useState(courseStore.getCourses())
-	const [authors, setAuthors] = useState([])
 
-	const onChange = () => {
+	useEffect(() => {
+		function subs() {
+			courseStore.addChangeLister(onChangeCourses)
+		}
+
+		subs()
+
+		if (courseStore.getCourses().length === 0) loadCourses()
+
+		return () => {
+			courseStore.removeChangeListener(onChangeCourses)
+		}
+	}, [courses.length])
+
+	function onChangeCourses() {
 		setCourses(courseStore.getCourses())
 	}
 
-	useEffect(() => {
-		courseStore.addChangeLister(onChange)
-		if (courseStore.getCourses().length === 0) loadCourses()
-		return () => courseStore.removeChangeListener(onChange)
-	}, [courses.length])
+	// useEffect(() => {
+	// 	async function getAu() {
+	// 		const response = await getAuthors().then(_au => _au)
+	// 		setAuthors(response)
+	// 	}
+	// 	getAu()
+	// }, [])
 
-	useEffect(() => {
-		getAuthors().then(_authors => setAuthors(_authors))
-	}, [])
+	// useEffect(() => {
+	// 	function sub() {
+	// 		authorStore.addChangeListener(onChangeAuthors)
+	// 	}
+
+	// 	sub()
+
+	// 	if (authorStore.getAuthors().length === 0) loadAuthors()
+
+	// 	return () => {
+	// 		authorStore.removeChangeListener(onChangeAuthors)
+	// 	}
+	// }, [authors.length])
 
 	return (
 		<>
@@ -29,7 +55,7 @@ const CoursesPage = () => {
 			<Link className='btn btn-primary' to='/course'>
 				Add Course
 			</Link>
-			<CoursesList courses={courses} authors={authors} deleteCourse={deleteCourse} />
+			<CoursesList courses={courses} deleteCourse={deleteCourse} />
 		</>
 	)
 }

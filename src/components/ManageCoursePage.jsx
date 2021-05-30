@@ -1,7 +1,7 @@
 import CourseForm from "./CourseForm"
 import React, { useState, useEffect } from "react"
 import courseStore from "../stores/courseStore"
-import { saveCourse, loadCourses } from "../actions/courseActions"
+import { saveCourse, loadCourses } from "../actions/course/courseActions"
 
 const ManageCoursePage = props => {
 	const [errors, setErrors] = useState({})
@@ -14,20 +14,37 @@ const ManageCoursePage = props => {
 		category: "",
 	})
 
-	const onChange = () => {
-		setCourses(courseStore.getCourses())
-	}
-
 	useEffect(() => {
 		courseStore.addChangeLister(onChange)
 		const slug = props.match.params.slug
-		if (courses.length === 0) {
-			loadCourses()
-		} else if (slug) {
-			setCourse(courseStore.getCoursesBySlug(slug))
+
+		function name() {
+			if (courseStore.getCourses.length === 0) {
+				loadCourses()
+			}
 		}
+		name()
+
+		function name2() {
+			if (slug) {
+				setCourse(courseStore.getCoursesBySlug(slug))
+			}
+		}
+		name2()
+
 		return () => courseStore.removeChangeListener(onChange)
-	}, [courses, props.match.params.slug])
+	}, [courses.length, props.match.params.slug])
+
+	// useEffect(() => {
+	// 	const slug = props.match.params.slug
+	// 	if (slug) {
+	// 		setCourse(courseStore.getCoursesBySlug(slug))
+	// 	}
+	// }, [props.match.params])
+
+	function onChange() {
+		setCourses(courseStore.getCourses())
+	}
 
 	const formIsValid = () => {
 		const _error = {}

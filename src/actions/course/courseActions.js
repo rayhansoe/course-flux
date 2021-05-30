@@ -1,6 +1,6 @@
-import * as courseApi from "../api/courseApi"
-import dispatcher from "../appDispatcher"
-import actionTypes from "./actionTypes"
+import * as courseApi from "../../api/courseApi"
+import dispatcher from "../../appDispatcher"
+import actionTypes from "../actionTypes"
 import { toast } from "react-toastify"
 
 export const saveCourse = course => {
@@ -13,8 +13,8 @@ export const saveCourse = course => {
 	})
 }
 
-export const loadCourses = () => {
-	return courseApi.getCourses().then(courses => {
+export const loadCourses = async () => {
+	return await courseApi.getCourses().then(courses => {
 		dispatcher.dispatch({
 			actionType: actionTypes.LOAD_COURSES,
 			courses,
