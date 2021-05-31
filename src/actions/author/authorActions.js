@@ -28,5 +28,6 @@ export const deleteAuthor = id => {
 			actionType: actionTypes.DELETE_AUTHOR,
 			id,
 		})
+		toast.error("⚠ Course deleted")
 	})
 }
