@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import authorStore from "../stores/authorStore"
-import { loadAuthors } from "../actions/author/authorActions"
+import { loadAuthors, deleteAuthor } from "../actions/author/authorActions"
 import { Link } from "react-router-dom"
 import AuthorsList from "./AuthorsList"
 
@@ -31,7 +31,7 @@ const AuthorsPage = () => {
 			<Link className='btn btn-primary' to='/author'>
 				Add Course
 			</Link>
-			<AuthorsList authors={authors} />
+			<AuthorsList authors={authors} deleteAuthor={deleteAuthor} />
 		</>
 	)
 }

@@ -5,11 +5,6 @@ import actionTypes from "../actions/actionTypes"
 const CHANGE_EVENT = "change"
 let _authors = []
 
-// const getAuthorNamee = async (id, authors) => {
-// 	const o = await authors.find(author => author.id === id)
-// 	return await o.name
-// }
-
 class AuthorStore extends EventEmitter {
 	emitChange() {
 		this.emit(CHANGE_EVENT)
@@ -27,8 +22,8 @@ class AuthorStore extends EventEmitter {
 		return _authors
 	}
 
-	getNameAuthor(callback) {
-		return callback()
+	getAuthorsBySlug(slug) {
+		return _authors.find(author => author.slug === slug)
 	}
 }
 

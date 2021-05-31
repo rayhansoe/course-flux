@@ -7,23 +7,19 @@ import React, { useState, useEffect } from "react"
 const CoursesList = ({ courses, deleteCourse }) => {
 	const [authors, setAuthors] = useState(authorStore.getAuthors())
 
-	const onChangeAuthors = () => {
-		setAuthors(authorStore.getAuthors())
-	}
-
 	useEffect(() => {
-		function sub() {
-			authorStore.addChangeListener(onChangeAuthors)
-		}
+		authorStore.addChangeListener(onChangeAuthors)
 
-		sub()
-
-		if (authorStore.getAuthors().length === 0) loadAuthors()
+		if (authors.length === 0) loadAuthors()
 
 		return () => {
 			authorStore.removeChangeListener(onChangeAuthors)
 		}
 	}, [authors.length])
+
+	const onChangeAuthors = () => {
+		setAuthors(authorStore.getAuthors())
+	}
 
 	const GetName = ({ id, authors }) => {
 		return <em>{authors.find(author => author.id === id).name}</em>

@@ -2,9 +2,11 @@ import CourseForm from "./CourseForm"
 import React, { useState, useEffect } from "react"
 import courseStore from "../stores/courseStore"
 import { saveCourse, loadCourses } from "../actions/course/courseActions"
+import { useHistory } from "react-router-dom"
 
 const ManageCoursePage = props => {
 	const [errors, setErrors] = useState({})
+	let history = useHistory()
 	const [courses, setCourses] = useState(courseStore.getCourses())
 	const [course, setCourse] = useState({
 		id: null,
@@ -18,30 +20,18 @@ const ManageCoursePage = props => {
 		courseStore.addChangeLister(onChange)
 		const slug = props.match.params.slug
 
-		function name() {
-			if (courseStore.getCourses.length === 0) {
-				loadCourses()
-			}
-		}
-		name()
-
-		function name2() {
-			if (slug) {
+		if (courses.length === 0) {
+			loadCourses()
+		} else if (slug) {
+			if (courseStore.getCoursesBySlug(slug)) {
 				setCourse(courseStore.getCoursesBySlug(slug))
+			} else {
+				history.push("/404")
 			}
 		}
-		name2()
 
 		return () => courseStore.removeChangeListener(onChange)
-	}, [courses.length, props.match.params.slug])
-
-	// useEffect(() => {
-	// 	const slug = props.match.params.slug
-	// 	if (slug) {
-	// 		setCourse(courseStore.getCoursesBySlug(slug))
-	// 	}
-	// }, [props.match.params])
-
+	}, [courses.length, history, props.match.params.slug])
 	function onChange() {
 		setCourses(courseStore.getCourses())
 	}
@@ -75,7 +65,7 @@ const ManageCoursePage = props => {
 		<>
 			<div className='jumbotron'>
 				<h2>Manage Course</h2>
-				<h5 className='mt-3 fw-normal'>{props.match.params.slug}</h5>
+				{props.match.params.slug ? <h5 className='mt-3 fw-normal'>{course.title}</h5> : ""}
 			</div>
 
 			<CourseForm course={course} onChange={handleChange} onSubmit={handleSubmit} errors={errors} />

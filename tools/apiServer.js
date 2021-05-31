@@ -57,6 +57,16 @@ server.post("/courses/", function (req, res, next) {
 	}
 })
 
+server.post("/authors/", function (req, res, next) {
+	const error = validateAuthor(req.body)
+	if (error) {
+		res.status(400).send(error)
+	} else {
+		req.body.slug = createSlug(req.body.name) // Generate a slug for new authors.
+		next()
+	}
+})
+
 // Use default router
 server.use(router)
 
@@ -76,9 +86,15 @@ function createSlug(value) {
 		.toLowerCase()
 }
 
+// Returns a URL friendly slug
 function validateCourse(course) {
 	if (!course.title) return "Title is required."
 	if (!course.authorId) return "Author is required."
 	if (!course.category) return "Category is required."
+	return ""
+}
+
+function validateAuthor(author) {
+	if (!author.name) return "Title is required."
 	return ""
 }

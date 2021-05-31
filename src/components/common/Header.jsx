@@ -16,7 +16,7 @@ const Header = () => {
 					Courses
 				</NavLink>
 				<NavLink className='breadcrumb-item' to='/authors' activeStyle={activeStyle}>
-					authors
+					Authors
 				</NavLink>
 			</ol>
 		</nav>

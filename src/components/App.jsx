@@ -2,6 +2,7 @@ import Header from "./common/Header"
 import CoursesPage from "./CoursesPage"
 import AuthorsPage from "./AuthorsPage"
 import ManageCoursePage from "./ManageCoursePage"
+import ManageAuthorPage from "./ManageAuthorPage"
 import About from "./About"
 import HomePage from "./HomePage"
 import NotFoundPage from "./NotFoundPage"
@@ -28,9 +29,12 @@ const App = () => {
 				<Route path='/' exact component={HomePage} />
 				<Route path='/about' component={About} />
 				<Route path='/courses' component={CoursesPage} />
-				<Route path='/authors' component={AuthorsPage} />
 				<Route path='/course/:slug' component={ManageCoursePage} />
 				<Route path='/course' component={ManageCoursePage} />
+				<Route path='/authors' component={AuthorsPage} />
+				<Route path='/author/:slug' component={ManageAuthorPage} />
+				<Route path='/author/' component={ManageAuthorPage} />
+				<Route path='/404/' component={NotFoundPage} />
 				<Redirect from='/home' to='/' />
 				<Route component={NotFoundPage} />
 			</Switch>

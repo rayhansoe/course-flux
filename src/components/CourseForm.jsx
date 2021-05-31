@@ -28,7 +28,7 @@ const CourseForm = ({ course, onChange, onSubmit, errors }) => {
 	}, [authors.length])
 
 	return (
-		<form className='course-form' onSubmit={onSubmit}>
+		<form className='form' onSubmit={onSubmit}>
 			<TextInput
 				id='title'
 				label='Title'
