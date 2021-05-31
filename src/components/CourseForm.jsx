@@ -14,11 +14,7 @@ const CourseForm = ({ course, onChange, onSubmit, errors }) => {
 	}
 
 	useEffect(() => {
-		function sub() {
-			authorStore.addChangeListener(onChangeAuthors)
-		}
-
-		sub()
+		authorStore.addChangeListener(onChangeAuthors)
 
 		if (authorStore.getAuthors().length === 0) loadAuthors()
 
