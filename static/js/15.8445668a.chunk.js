@@ -1,0 +1,2 @@
+(this["webpackJsonpcourse-flux"]=this["webpackJsonpcourse-flux"]||[]).push([[15],{72:function(e,s,c){"use strict";c.r(s);var t=c(12),o=c(2);s.default=function(){return Object(o.jsxs)("div",{className:"jumbotron",children:[Object(o.jsx)("h2",{className:"fw-bold",children:"Page Not Found"}),Object(o.jsx)(t.b,{to:"/",children:"Back to Home"})]})}}}]);
+//# sourceMappingURL=15.8445668a.chunk.js.map
