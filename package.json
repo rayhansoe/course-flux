@@ -3,12 +3,14 @@
 	"version": "0.1.0",
 	"private": true,
 	"dependencies": {
+		"@loadable/component": "^5.15.0",
 		"@popperjs/core": "^2.9.2",
 		"@testing-library/jest-dom": "^5.12.0",
 		"@testing-library/react": "^11.2.6",
 		"@testing-library/user-event": "^12.8.3",
 		"bootstrap": "^5.0.1",
 		"flux": "^4.0.1",
+		"gh-pages": "^3.2.0",
 		"react": "^17.0.2",
 		"react-dom": "^17.0.2",
 		"react-router-dom": "^5.2.0",
@@ -18,8 +20,10 @@
 		"web-vitals": "^1.1.2"
 	},
 	"scripts": {
+		"predeploy": "npm run build",
+		"deploy": "gh-pages -d build",
 		"start": "run-p start:dev start:api",
-		"start:dev": "cross-env REACT_APP_API_URL=http://localhost:3001 react-scripts start",
+		"start:dev": "cross-env REACT_APP_API_URL=https://my-json-server.typicode.com/rayhansoe/course-db-json/ react-scripts start",
 		"prestart:api": "node tools/createMockDb.js",
 		"start:api": "node tools/apiServer.js",
 		"build": "react-scripts build",
@@ -48,5 +52,6 @@
 		"cross-env": "^7.0.3",
 		"json-server": "^0.16.3",
 		"npm-run-all": "^4.1.5"
-	}
+	},
+	"homepage": "http://rayhansoe.github.io/course-flux"
 }
