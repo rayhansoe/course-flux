@@ -11,6 +11,7 @@
 	width: 40%;
 }
 
-.modal .fade .show {
+.modal.fade.show {
 	z-index: 1060;
+	background-color: rgba(0, 0, 0, 0.5);
 }
