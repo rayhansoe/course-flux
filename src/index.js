@@ -1,16 +1,18 @@
 // import "bootstrap/scss/bootstrap.scss"
 import "bootstrap/dist/css/bootstrap.min.css"
 import "./styles/index.css"
-import React from "react"
+import React, { Suspense } from "react"
 import ReactDOM from "react-dom"
 import reportWebVitals from "./reportWebVitals"
 import App from "./components/App"
 import { BrowserRouter as Router } from "react-router-dom"
 
 ReactDOM.render(
-	<Router>
-		<App />
-	</Router>,
+	<Suspense fallback={<div>Loading...</div>}>
+		<Router>
+			<App />
+		</Router>
+	</Suspense>,
 	document.getElementById("root")
 )
 
