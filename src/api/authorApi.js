@@ -1,5 +1,7 @@
 import { handleResponse, handleError } from "./apiUtils"
-const baseUrl = process.env.REACT_APP_API_URL + "/authors/"
+const baseUrl = process.env.REACT_APP_API_URL
+	? process.env.REACT_APP_API_URL + "/authors/"
+	: "https://my-json-server.typicode.com/rayhansoe/course-db-json/authors/"
 
 export function getAuthors() {
 	return fetch(baseUrl).then(handleResponse).catch(handleError)

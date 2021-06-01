@@ -1,5 +1,7 @@
 import { handleResponse, handleError } from "./apiUtils"
-const baseUrl = process.env.REACT_APP_API_URL + "/courses/"
+const baseUrl = process.env.REACT_APP_API_URL
+	? process.env.REACT_APP_API_URL + "/courses/"
+	: "https://my-json-server.typicode.com/rayhansoe/course-db-json/courses/"
 
 export function getCourses() {
 	return fetch(baseUrl).then(handleResponse).catch(handleError)
@@ -35,4 +37,12 @@ export function deleteCourse(courseId) {
 	return fetch(baseUrl + courseId, { method: "DELETE" })
 		.then(handleResponse)
 		.catch(handleError)
+}
+
+// Returns a URL friendly slug
+export function createSlug(value) {
+	return value
+		.replace(/[^a-z0-9_]+/gi, "-")
+		.replace(/^-|-$/g, "")
+		.toLowerCase()
 }
