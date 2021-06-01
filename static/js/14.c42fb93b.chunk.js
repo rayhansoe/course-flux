@@ -1,2 +1,0 @@
-(this["webpackJsonpcourse-flux"]=this["webpackJsonpcourse-flux"]||[]).push([[14],{69:function(t,e,s){"use strict";s.r(e);var r=s(12),c=s(2);e.default=function(){return Object(c.jsxs)("div",{className:"jumbotron",children:[Object(c.jsx)("h1",{children:"Pluralsight Administration"}),Object(c.jsx)("p",{children:"React, Flux and React Router for ultra-responsive web apps."}),Object(c.jsx)(r.b,{to:"/about",className:"btn btn-primary",children:"About"})]})}}}]);
-//# sourceMappingURL=14.c42fb93b.chunk.js.map
