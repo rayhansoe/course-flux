@@ -3,7 +3,8 @@ import PropTypes from "prop-types"
 import authorStore from "../stores/authorStore"
 import { loadAuthors } from "../actions/author/authorActions"
 import { useState, useEffect } from "react"
-import Modal from "./common/Modal"
+import loadable from "@loadable/component"
+const Modal = loadable(() => import("./common/Modal"))
 
 const CoursesList = ({ courses, deleteCourse }) => {
 	const [authors, setAuthors] = useState(authorStore.getAuthors())
@@ -65,7 +66,7 @@ const CoursesList = ({ courses, deleteCourse }) => {
 							return (
 								<tr key={index}>
 									<td>
-										<Link to={"/course/" + course.slug}>{course.title}</Link>
+										<Link to={"/course-flux/course/" + course.slug}>{course.title}</Link>
 									</td>
 									<td>
 										{authors.length !== 0 ? (

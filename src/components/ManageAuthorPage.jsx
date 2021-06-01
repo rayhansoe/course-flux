@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react"
+import loadable from "@loadable/component"
 import { saveAuthor, loadAuthors } from "../actions/author/authorActions"
 import authorStore from "../stores/authorStore"
-import AuthorForm from "./AuthorForm"
 import { useHistory } from "react-router-dom"
+const AuthorForm = loadable(() => import("./AuthorForm"))
 
 const ManageAuthorPage = props => {
 	const history = useHistory()
@@ -24,7 +25,7 @@ const ManageAuthorPage = props => {
 			if (authorStore.getAuthorsBySlug(slug)) {
 				setAuthor(authorStore.getAuthorsBySlug(slug))
 			} else {
-				history.push("/404")
+				history.push("/course-flux/404")
 			}
 		}
 

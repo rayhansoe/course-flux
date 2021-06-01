@@ -1,8 +1,9 @@
 import courseStore from "../stores/courseStore"
 import { loadCourses, deleteCourse } from "../actions/course/courseActions"
 import { useState, useEffect } from "react"
-import CoursesList from "./CoursesList"
+import loadable from "@loadable/component"
 import { Link } from "react-router-dom"
+const CoursesList = loadable(() => import("./CoursesList"))
 
 const CoursesPage = () => {
 	const [courses, setCourses] = useState(courseStore.getCourses())
@@ -28,7 +29,7 @@ const CoursesPage = () => {
 	return (
 		<>
 			<h2>Courses</h2>
-			<Link className='btn btn-primary' to='/course'>
+			<Link className='btn btn-primary' to='/course-flux/course'>
 				Add Course
 			</Link>
 			<CoursesList courses={courses} deleteCourse={deleteCourse} />

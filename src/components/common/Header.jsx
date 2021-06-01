@@ -6,16 +6,16 @@ const Header = () => {
 	return (
 		<nav aria-label={"breadcrumb"} className='mt-3'>
 			<ol className='breadcrumb'>
-				<NavLink className='breadcrumb-item' exact to='/' activeStyle={activeStyle}>
+				<NavLink className='breadcrumb-item' exact to='/course-flux/' activeStyle={activeStyle}>
 					Home
 				</NavLink>
-				<NavLink className='breadcrumb-item' to='/about' activeStyle={activeStyle}>
+				<NavLink className='breadcrumb-item' to='/course-flux/about' activeStyle={activeStyle}>
 					About
 				</NavLink>
-				<NavLink className='breadcrumb-item' to='/courses' activeStyle={activeStyle}>
+				<NavLink className='breadcrumb-item' to='/course-flux/courses' activeStyle={activeStyle}>
 					Courses
 				</NavLink>
-				<NavLink className='breadcrumb-item' to='/authors' activeStyle={activeStyle}>
+				<NavLink className='breadcrumb-item' to='/course-flux/authors' activeStyle={activeStyle}>
 					Authors
 				</NavLink>
 			</ol>

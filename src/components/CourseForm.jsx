@@ -1,10 +1,10 @@
-import React from "react"
-import TextInput from "./common/TextInput"
-import PropTypes from "prop-types"
-import DropDown from "./common/DropDown"
-import authorStore from "../stores/authorStore"
-import { loadAuthors } from "../actions/author/authorActions"
 import { useState, useEffect } from "react"
+import loadable from "@loadable/component"
+import { loadAuthors } from "../actions/author/authorActions"
+import authorStore from "../stores/authorStore"
+import PropTypes from "prop-types"
+const TextInput = loadable(() => import("./common/TextInput"))
+const DropDown = loadable(() => import("./common/DropDown"))
 
 const CourseForm = ({ course, onChange, onSubmit, errors }) => {
 	const [authors, setAuthors] = useState(authorStore.getAuthors())

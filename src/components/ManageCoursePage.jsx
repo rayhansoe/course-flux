@@ -1,8 +1,10 @@
-import CourseForm from "./CourseForm"
 import React, { useState, useEffect } from "react"
+import loadable from "@loadable/component"
 import courseStore from "../stores/courseStore"
 import { saveCourse, loadCourses } from "../actions/course/courseActions"
 import { useHistory } from "react-router-dom"
+import { createSlug } from "../api/courseApi"
+const CourseForm = loadable(() => import("./CourseForm"))
 
 const ManageCoursePage = props => {
 	const [errors, setErrors] = useState({})
@@ -26,7 +28,7 @@ const ManageCoursePage = props => {
 			if (courseStore.getCoursesBySlug(slug)) {
 				setCourse(courseStore.getCoursesBySlug(slug))
 			} else {
-				history.push("/404")
+				history.push("/courses/404")
 			}
 		}
 
@@ -49,16 +51,27 @@ const ManageCoursePage = props => {
 	}
 
 	const handleChange = ({ target }) => {
-		const updateCourse = { ...course, [target.name]: target.value }
-		setCourse(updateCourse)
+		if (target.name === "title") {
+			const updateCourse = {
+				...course,
+				[target.name]: target.value,
+				slug: createSlug(target.value),
+			}
+			setCourse(updateCourse)
+		} else {
+			const updateCourse = { ...course, [target.name]: target.value }
+			setCourse(updateCourse)
+		}
 	}
 
 	const handleSubmit = event => {
 		event.preventDefault()
 		if (!formIsValid()) return
+		console.log(course)
 		saveCourse(course).then(() => {
-			props.history.push("/courses")
+			props.history.push("/course-flux/courses")
 		})
+		console.log(courses)
 	}
 
 	return (

@@ -17,13 +17,14 @@ const AuthorsList = ({ authors, deleteAuthor }) => {
 						<tr key={author.id}>
 							<td>{index + 1}</td>
 							<td>
-								<Link to={"/author/" + author.slug}>{author.name}</Link>
+								<Link to={"/course-flux/author/" + author.slug}>{author.name}</Link>
 							</td>
 							<td>
 								<button
 									type='button'
 									className='btn btn-outline-danger'
-									onClick={() => deleteAuthor(author.id)}>
+									onClick={() => deleteAuthor(author.id)}
+									disabled>
 									DELETE
 								</button>
 							</td>

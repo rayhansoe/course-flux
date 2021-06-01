@@ -1,4 +1,5 @@
-import TextInput from "./common/TextInput"
+import loadable from "@loadable/component"
+const TextInput = loadable(() => import("./common/TextInput"))
 
 const AuthorForm = ({ author, onChange, onSubmit, errors }) => {
 	return (

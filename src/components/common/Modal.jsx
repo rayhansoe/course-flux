@@ -1,7 +1,7 @@
 const Modal = ({ status, onClick, deleteCourse, styles, id, course, authors }) => {
 	return (
 		<div
-			className={status ? "modal fade show" : "modal fade"}
+			className={status ? "modal fade show pt-5" : "modal fade"}
 			id='exampleModal'
 			tabIndex='-1'
 			aria-labelledby='exampleModalLabel'
@@ -13,11 +13,11 @@ const Modal = ({ status, onClick, deleteCourse, styles, id, course, authors }) =
 				onClick()
 				e.stopPropagation()
 			}}>
-			<div className={status ? "modal-dialog  modal-md" : "modal-dialog"}>
+			<div className={status ? "modal-dialog  modal-md mt-5" : "modal-dialog"}>
 				<div className='modal-content' onClick={e => e.stopPropagation()}>
 					<div className='modal-header'>
 						<h5 className='modal-title' id='exampleModalLabel'>
-							Modal title
+							Course
 						</h5>
 						<button
 							type='button'
